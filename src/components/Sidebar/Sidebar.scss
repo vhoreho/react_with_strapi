@@ -1,0 +1,12 @@
+.sidebar {
+  width: 20.556vw;
+  height: 100vh;
+  position: fixed;
+  background-color: var(--light);
+  padding: 2.222vh 2.222vw;
+
+  &__title {
+    font-size: 18px;
+    color: var(--darken-text);
+  }
+}
