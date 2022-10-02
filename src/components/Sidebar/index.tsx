@@ -1,47 +1,36 @@
 import { useState, useEffect } from 'react';
-import { Row, Col } from 'react-bootstrap';
 import { createBoard, getAllBoards } from 'service/boards';
-import { Spinner } from 'common/Spinner';
-import './Sidebar.scss';
-import { Navbar } from './components/Navbar';
-
-export type Board = {
-  id: number,
-  attributes: {
-    createdAt: string
-    publishedAt: string
-    title: string
-    updateAt: string
-  }
-}
-
+import { CreateBoardModal, Spinner } from 'common'
+import ListIcon from 'common/icons/List';
+import { BoardsList } from './components/BoardsList';
 
 export function Sidebar() {
-  const [state, setState] = useState<Board[] | null>(null);
-  const [isLoading, setIsLoading] = useState<boolean>(false);
+  const [boards, setBoards] = useState([]);
+  const [show, setShow] = useState(false);
+  const [isSend, setIsSend] = useState(false);
+
+  const handleClose = () => setShow(false);
+  const handleShow = () => setShow(true);
+
+  function handleCreateBoard(boardName: string) {
+    createBoard(boardName);
+    setIsSend(true);
+  }
 
   useEffect(() => {
-    setIsLoading(true);
-    getAllBoards().then(data => setState(data));
-    setIsLoading(false);
-  }, [])
-
-  function handleCreateBoard() {
-    createBoard('Navbar')
-  }
+    try {
+      getAllBoards().then(data => setBoards(data))
+    } catch (error) {
+      throw new Error()
+    }
+  }, [isSend])
 
   return (
     <div className='sidebar'>
-      <h1>kanban</h1>
-
-      <Row style={{ marginBlock: '20px' }}>
-        <Col>
-          <h3 className='sidebar__title'>All boards ({state?.length})</h3>
-        </Col>
-      </Row>
-      {isLoading ? <Spinner /> : <Navbar list={state!} />}
-
-      <button onClick={handleCreateBoard}>Add new board</button>
+      <h1 className='sidebar-title'>kanban</h1>
+      {!boards ? <Spinner /> : <BoardsList data={boards} />}
+      <button onClick={handleShow} className='create-btn'><ListIcon /> + Create New Board</button>
+      <CreateBoardModal show={show} onShow={handleClose} onCreate={handleCreateBoard} />
     </div>
   )
 }

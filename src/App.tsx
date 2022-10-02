@@ -1,4 +1,3 @@
-import './App.scss';
 import { Sidebar } from './components';
 
 function App() {
