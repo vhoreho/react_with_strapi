@@ -6,6 +6,7 @@
   z-index: 1;
   display: flex;
   flex-direction: column;
+  border-right: 2px solid var(--border);
 
   &-title {
     padding: 2.222vh 2.222vw;

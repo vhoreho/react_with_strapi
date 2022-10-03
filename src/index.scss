@@ -2,9 +2,12 @@
 @import "~bootstrap/scss/bootstrap";
 @import "styles/modal.scss";
 @import 'styles/sidebar.scss';
+@import 'styles/header.scss';
+@import 'styles/todolist.scss';
 
 :root {
   --light: #2c2c38;
+  --border: #343440;
   --dark: #21212d;
   --accent: #645fc6;
 
@@ -17,4 +20,13 @@ body {
   font-family: 'Montserrat', sans-serif;
   background: var(--dark);
   color: var(--light-text);
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  border: none;
+
+  &:hover {
+    background-color: rgba($color: var(--accent), $alpha: 0.6);
+  }
 }

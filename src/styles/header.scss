@@ -1,0 +1,15 @@
+.header {
+  position: fixed;
+  top: 0;
+  right: 0;
+  left: 20.556vw;
+  padding: 15px;
+  background-color: var(--light);
+  height: 80px;
+  display: flex;
+  justify-content: space-between;
+
+  &__title {
+    margin: 0;
+  }
+}

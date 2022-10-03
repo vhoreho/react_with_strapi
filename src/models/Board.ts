@@ -1,3 +1,14 @@
+export type Task = {
+
+  id: number,
+  attributes: {
+    title: string
+    description: string,
+    status: string
+  }
+
+}
+
 export type Board = {
   id: number,
   attributes: {
@@ -6,5 +17,8 @@ export type Board = {
     title: string
     updateAt: string
     route: string
+    tasks: {
+      data: Task[]
+    }
   }
 }

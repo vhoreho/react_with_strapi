@@ -17,3 +17,8 @@ export async function createBoard(title: string) {
 
   return response
 }
+
+export async function getBoardById(id: string) {
+  const response = await axios.get(`http://localhost:1337/api/boards/${id}/?populate=*`);
+  return response.data.data;
+}
